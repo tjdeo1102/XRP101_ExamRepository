@@ -12,4 +12,8 @@
 제시된 소스코드에서 문제가 발생하는 `원인을 모두 서술`하시오.
 
 ## 답안
-- 
+- _cubeController에 할당된 CubeController가 있는 인스턴스가 할당되기 전에 SetPosition을 호출함
+- _cubeController의 위치를 조정화기 위해 SetPoint를 이용하는데, 해당 SetPoint를 설정할 때, private로 접근 제한이 되어 있음 (변수명으로 추측하면, 해당 접근 제한은 public이라 판단)
+- _cubeController의 SetPoint가 _cubeSetPoint를 설정하는 것이 아닌, 반대로 설정되어야 함.
+- _cubeController의 SetPosition()을 통해 위치가 조정되길 바라므로, 해당 메소드를 호출.
+
