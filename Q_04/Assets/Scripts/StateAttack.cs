@@ -32,7 +32,8 @@ public class StateAttack : PlayerState
 
     public override void Exit()
     {
-        Machine.ChangeState(StateType.Idle);
+        // 이미 ChangeState에서 해당 Exit를 호출하게 설정되어 있으므로, ChangeState를 Exit에서 호출하면 재귀
+        //Machine.ChangeState(StateType.Idle);
     }
 
     private void Attack()
@@ -43,11 +44,18 @@ public class StateAttack : PlayerState
             );
 
         IDamagable damagable;
+
+        // 데미지를 입는 몬스터의 TakeHit만 호출하도록 필터링 필요
         foreach (Collider col in cols)
         {
-            damagable = col.GetComponent<IDamagable>();
-            damagable.TakeHit(Controller.AttackValue);
+            col.TryGetComponent<IDamagable>(out damagable);
+            damagable?.TakeHit(Controller.AttackValue);
         }
+        //foreach (Collider col in cols)
+        //{
+        //    damagable = col.GetComponent<IDamagable>();
+        //    damagable.TakeHit(Controller.AttackValue);
+        //}
     }
 
     public IEnumerator DelayRoutine(Action action)
@@ -55,7 +63,9 @@ public class StateAttack : PlayerState
         yield return _wait;
 
         Attack();
-        Exit();
+        Machine.ChangeState(StateType.Idle);
+        // 이미 ChangeState에서 해당 Exit를 호출하게 설정되어 있으므로, 다시 Exit를 직접 호출할 필요가 없음
+        //Exit();
     }
 
 }
