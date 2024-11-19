@@ -26,9 +26,13 @@ public class BulletController : PooledBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other
+            // 플레이어 바디의 부모에 Player가 설정되어 있음
+            other.transform.parent
                 .GetComponent<PlayerController>()
                 .TakeHit(_damageValue);
+            //other
+            //    .GetComponent<PlayerController>()
+            //    .TakeHit(_damageValue);
         }
     }
 
@@ -46,6 +50,8 @@ public class BulletController : PooledBehaviour
     private IEnumerator DeactivateRoutine()
     {
         yield return _wait;
+        // 해당 풀 오브젝트를 다시 사용할 때, 이전 속도를 참조하지 않도록 리지드 바디 속도 초기화
+        _rigidbody.velocity = Vector3.zero;
         ReturnPool();
     }
 
