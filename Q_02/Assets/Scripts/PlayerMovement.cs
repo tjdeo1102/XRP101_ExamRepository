@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (direction == Vector3.zero) return;
         
-        transform.Translate(_status.MoveSpeed * Time.deltaTime * direction);
+        // 대각선 방향에서는 속도가 빨라지는 문제 발생
+        // direction의 크기를 모든 방향이 같도록 nomalized를 진행
+        transform.Translate(_status.MoveSpeed * Time.deltaTime * direction.normalized);
+        //transform.Translate(_status.MoveSpeed * Time.deltaTime * direction);
     }
 }
