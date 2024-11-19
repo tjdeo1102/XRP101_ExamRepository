@@ -20,6 +20,8 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public void LoadScene(int buildIndex)
     {
+        // 씬이 전환될 때, 정상 타임스케일로 초기화
+        Time.timeScale = 1f;
         SceneManager.LoadScene(buildIndex);
     }
 }
