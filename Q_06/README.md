@@ -11,4 +11,6 @@
 제시된 프로젝트에서 발생하는 `문제들을 모두 서술`하고 올바르게 동작하도록 `소스코드를 개선`하시오.
 
 ## 답안
-- 
+- 카메라가 플레이어의 muzzlePoint를 따라다니는 것이 아닌, muzzlePoint가 카메라 위치를 따라다니도록 구현된 문제
+- Gun의 TargetLayer가 Enemy로 설정되어 있지 않은 문제
+- Gun이 muzzlePoint의 앞이 아닌 World좌표의 forward를 조준하는 문제
