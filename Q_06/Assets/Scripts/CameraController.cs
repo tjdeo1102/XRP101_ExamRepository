@@ -24,9 +24,15 @@ public class CameraController : MonoBehaviour
     {
         if (!_hasFollowTarget) return;
 
-        _followTarget.SetPositionAndRotation(
-            transform.position,
-            transform.rotation
+        // 카메라가 followTarget의 위치를 따라 다니도록 구현
+        transform.SetPositionAndRotation(
+            _followTarget.position,
+            _followTarget.rotation
             );
+
+        //_followTarget.SetPositionAndRotation(
+        //    transform.position,
+        //    transform.rotation
+        //    );
     }
 }

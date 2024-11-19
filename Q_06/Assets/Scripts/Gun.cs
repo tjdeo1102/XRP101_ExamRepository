@@ -10,7 +10,9 @@ public class Gun : MonoBehaviour
     
     public void Fire(Transform origin)
     {
-        Ray ray = new(origin.position, Vector3.forward);
+        // 총의 앞 부분을 겨누도록 수정
+        Ray ray = new(origin.position, transform.forward);
+        //Ray ray = new(origin.position, Vector3.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, _range, _targetLayer))
